@@ -6,21 +6,37 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 @Service
 public class DisplayMessage {
+    private Locale locale;
+    private ResourceBundle resourceBundle;
 
-    private final MessageSource messageSource;
+    public String getWelcomeMessage(){
+    return resourceBundle.getString("welcomeMessage");
+}
 
-    @Autowired
-    public DisplayMessage(MessageSource messageSource){
-        this.messageSource = messageSource;
+    public DisplayMessage(){
+
     }
-
-    public String getWelcomeMessage(Locale locale) {
-        return messageSource.getMessage("welcomeMessage", null, locale);
+    public DisplayMessage(String language, String country){
+        locale = new Locale(language, country);
+        resourceBundle = ResourceBundle.getBundle("welcomeMessage", locale);
     }
-
-
+    //test
+//    public void testWelcomeMessage(){
+//        String welcomeMessage = getWelcomeMessage();
+//        System.out.println("test test test "+ welcomeMessage);
+//    }
+//    public static void main(String[] args) {
+//        DisplayMessage displayMessage = new DisplayMessage("fr", "CA");
+//        displayMessage.testWelcomeMessage();
+//    }
 
 }
+
+
+
+
+

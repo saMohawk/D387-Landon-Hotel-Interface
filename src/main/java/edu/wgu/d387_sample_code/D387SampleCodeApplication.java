@@ -10,6 +10,7 @@ public class D387SampleCodeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(D387SampleCodeApplication.class, args);
+
 	}
 
 }
