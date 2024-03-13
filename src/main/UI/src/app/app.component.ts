@@ -14,10 +14,38 @@ import {map} from "rxjs/operators";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+ constructor(private httpClient:HttpClient){}
 
-  constructor(private httpClient:HttpClient){}
+  //welcomeMessage: string;
 
-  private baseURL:string='http://localhost:8080';
+//   ngOnInit(){
+//   this.getWelcomeMessage();
+//   }
+//
+//   getWelcomeMessage(){
+//   this.http.get<string>('http://localhost:8080/welcome').subscribe(
+//     (response) => {
+//     this.welcomeMessage = response;
+//     },
+//     (error) => {
+//     console.error('error loading wm: ', error);
+//     }
+//     );
+//   }
+
+
+  messages: string[] = [];
+
+  getWelcomeMessage():Observable<string[]> {
+  return this.httpClient.get<string[]>('http://localhost:8080/welcome');
+  }
+
+  ngOnInit() {this.getWelcomeMessage().subscribe((data)=> {
+  this.messages = data;
+  }
+
+   private baseURL:string='http://localhost:8080';
+
 
   private getUrl:string = this.baseURL + '/room/reservation/v1/';
   private postUrl:string = this.baseURL + '/room/reservation/v1';
