@@ -16,47 +16,33 @@ import {map} from "rxjs/operators";
 export class AppComponent implements OnInit{
  constructor(private httpClient:HttpClient){}
 
+  private baseURL:string='http://localhost:8080';
+    private getUrl:string = this.baseURL + '/room/reservation/v1/';
+    private postUrl:string = this.baseURL + '/room/reservation/v1';
+    public submitted!:boolean;
   //welcomeMessage: string;
 
-//   ngOnInit(){
-//   this.getWelcomeMessage();
-//   }
-//
-//   getWelcomeMessage(){
-//   this.http.get<string>('http://localhost:8080/welcome').subscribe(
-//     (response) => {
-//     this.welcomeMessage = response;
-//     },
-//     (error) => {
-//     console.error('error loading wm: ', error);
-//     }
-//     );
-//   }
 
-
-  messages: string[] = [];
-
-  getWelcomeMessage():Observable<string[]> {
-  return this.httpClient.get<string[]>('http://localhost:8080/welcome');
-  }
-
-  ngOnInit() {this.getWelcomeMessage().subscribe((data)=> {
-  this.messages = data;
-  }
-
-   private baseURL:string='http://localhost:8080';
-
-
-  private getUrl:string = this.baseURL + '/room/reservation/v1/';
-  private postUrl:string = this.baseURL + '/room/reservation/v1';
-  public submitted!:boolean;
   roomsearch! : FormGroup;
   rooms! : Room[];
   request!:ReserveRoomRequest;
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
+  messages: string[] = [];
+
+  getWelcomeMessage():Observable<string[]> {
+  return this.httpClient.get<string[]>('http://localhost:8080/welcome');
+  }
+  //welcomeMessage: string;
+
+//   ngOnInit() {this.getWelcomeMessage().subscribe((data)=> {
+//   this.messages = data;
+//   }
 
     ngOnInit(){
+
+
+
       this.roomsearch= new FormGroup({
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
