@@ -107,6 +107,8 @@ export interface Room{
   id:string;
   roomNumber:string;
   price:string;
+//   priceCAD:string;
+//   priceEUR:string;
   links:string;
 
 }
