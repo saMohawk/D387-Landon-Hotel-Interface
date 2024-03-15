@@ -10,27 +10,32 @@ import java.util.ResourceBundle;
 
 @Service
 public class DisplayMessage {
-    private Locale locale;
+   // private Locale locale;
     private ResourceBundle resourceBundle;
 
-    public String getWelcomeMessage(){
-    return resourceBundle.getString("welcomeMessage");
-}
-
-    public DisplayMessage(){
-
-    }
+    public DisplayMessage(){}
     public DisplayMessage(String language, String country){
-        locale = new Locale(language, country);
-        resourceBundle = ResourceBundle.getBundle("welcomeMessage", locale);
+       Locale locale = new Locale(language, country);
+       this.resourceBundle = ResourceBundle.getBundle("welcomeMessage", locale);
     }
+
+    public String getWelcomeMessage(){
+        if (this.resourceBundle != null){
+            return resourceBundle.getString("welcomeMessage");
+        }
+        else{
+         return "error: RB is not intialized!";
+       }
+
+    }
+
     //test
 //    public void testWelcomeMessage(){
 //        String welcomeMessage = getWelcomeMessage();
 //        System.out.println("test test test "+ welcomeMessage);
 //    }
 //    public static void main(String[] args) {
-//        DisplayMessage displayMessage = new DisplayMessage("fr", "CA");
+//        DisplayMessage displayMessage = new DisplayMessage("en", "US");
 //        displayMessage.testWelcomeMessage();
 //    }
 

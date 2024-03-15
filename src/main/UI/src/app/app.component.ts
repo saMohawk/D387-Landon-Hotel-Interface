@@ -4,10 +4,6 @@ import {HttpClient, HttpResponse,HttpHeaders} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import {map} from "rxjs/operators";
 
-
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,40 +12,33 @@ import {map} from "rxjs/operators";
 export class AppComponent implements OnInit{
  constructor(private httpClient:HttpClient){}
 
-  private baseURL:string='http://localhost:8080';
+ private baseURL:string='http://localhost:8080';
     private getUrl:string = this.baseURL + '/room/reservation/v1/';
     private postUrl:string = this.baseURL + '/room/reservation/v1';
     public submitted!:boolean;
-  //welcomeMessage: string;
-
 
   roomsearch! : FormGroup;
   rooms! : Room[];
   request!:ReserveRoomRequest;
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
-  messages: string[] = [];
+  welcomeMessage:string[] = [];
 
   getWelcomeMessage():Observable<string[]> {
-  return this.httpClient.get<string[]>('http://localhost:8080/welcome');
-  }
-  //welcomeMessage: string;
+          return this.httpClient.get<string[]>(this.baseURL + '/welcome');
+      }
 
-//   ngOnInit() {this.getWelcomeMessage().subscribe((data)=> {
-//   this.messages = data;
+// this.getWelcomeMessage().subscribe((data)=> {
+//         this.messages = data;
 //   }
 
-    ngOnInit(){
-
-
-
-      this.roomsearch= new FormGroup({
+  ngOnInit(){
+    this.roomsearch= new FormGroup({
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
       });
 
  //     this.rooms=ROOMS;
-
 
     const roomsearchValueChanges$ = this.roomsearch.valueChanges;
 
@@ -58,6 +47,11 @@ export class AppComponent implements OnInit{
       this.currentCheckInVal = x.checkin;
       this.currentCheckOutVal = x.checkout;
     });
+
+    //load welcomeMessages
+    this.getWelcomeMessage().subscribe(
+    messages => {this.welcomeMessage= messages;}
+    )
   }
 
     onSubmit({value,valid}:{value:Roomsearch,valid:boolean}){
@@ -129,7 +123,10 @@ export class ReserveRoomRequest {
     this.checkin = checkin;
     this.checkout = checkout;
   }
-}
+  }
+
+
+
 
 /*
 var ROOMS: Room[]=[
