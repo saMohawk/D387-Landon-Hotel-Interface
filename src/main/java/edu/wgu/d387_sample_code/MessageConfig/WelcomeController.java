@@ -48,29 +48,6 @@ public class WelcomeController {
         return ResponseEntity.ok(w);
 
     }
-//    public String getWelcomeMessage() {  //throws InterruptedException{
-//        String welcomeMessage =  displayMessage.getWelcomeMessage();
-//
-//        Thread threadEn = new Thread(()-> {
-//            DisplayMessage welcomeMessageEn = new DisplayMessage("en", "US");
-//            System.out.println(welcomeMessageEn.getWelcomeMessage());
-//        });
-//
-//        Thread threadFr = new Thread(()-> {
-//            DisplayMessage welcomeMessageFr = new DisplayMessage("fr", "CA");
-//            System.out.println(welcomeMessageFr.getWelcomeMessage());
-//        });
-//
-//        threadFr.start();
-//        threadEn.start();
-//
-////        threadEn.join();
-////        threadFr.join();
-//
-//
-//        return displayMessage.getWelcomeMessage(); //is this what I am to be returning?
-//
-//    }
 
 }
 

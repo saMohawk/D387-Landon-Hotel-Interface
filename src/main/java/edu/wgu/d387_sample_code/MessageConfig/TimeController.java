@@ -35,27 +35,8 @@ public class TimeController {
     }
 
 
-//    @GetMapping("/presentation")
-//    public String getPresentationTime(){
-//
 
-
-//        //create specific time
-//        LocalDateTime presentationTime = LocalDateTime.of(2024, 4, 18, 10, 30);
-//        String presentationTimeString = presentationTime.format(DateTimeFormatter.ofPattern("HH:mm"));
 //
-//        //UTC
-//        String UTCtime = presentationTime.atZone(ZoneId.of("UTC")).format(DateTimeFormatter.ofPattern("HH:mm"));
-//
-//        //MST
-//        String MSTtime = presentationTime.atZone(ZoneId.of("America/Denver")).format(DateTimeFormatter.ofPattern("HH:mm"));
-//
-//        //EST
-//        String ESTtime = presentationTime.atZone(ZoneId.of("America/New_York")).format(DateTimeFormatter.ofPattern("HH:mm"));
-//
-//
-//        return "UTC: " +UTCtime + " MST: " + MSTtime + " EST: "+ ESTtime;
-
 
 }
 
