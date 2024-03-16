@@ -23,10 +23,14 @@ export class AppComponent implements OnInit{
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
   welcomeMessage:string[] = [];
+  presentationTime:string[] = [];
 
   getWelcomeMessage():Observable<string[]> {
           return this.httpClient.get<string[]>(this.baseURL + '/welcome');
       }
+  getPresentationTime():Observable<string[]> {
+             return this.httpClient.get<string[]>(this.baseURL + '/presentation');
+         }
 
 // this.getWelcomeMessage().subscribe((data)=> {
 //         this.messages = data;
@@ -48,9 +52,14 @@ export class AppComponent implements OnInit{
       this.currentCheckOutVal = x.checkout;
     });
 
-    //load welcomeMessages
+    //get welcomeMessages
     this.getWelcomeMessage().subscribe(
     messages => {this.welcomeMessage= messages;}
+    )
+    //get presentation times
+    this.getPresentationTime().subscribe(
+    times => {this.presentationTime=times;
+    console.log(this.presentationTime);}
     )
   }
 
